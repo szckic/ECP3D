@@ -1165,7 +1165,6 @@
                 return /^[a-zA-Z][a-zA-Z0-9_]{4,15}$/.test(value);
             },
             required: function(value) {
-                console.log(value);
                 return value.length > 0;
             },
             number: function(value) {
@@ -1271,7 +1270,7 @@
                 this.form.find(this.checkTypes).each(function() {
                     var $this = $(this),
                         type = $this.data('validate');
-alert($this.val());
+
                     isValid = _commonValidate($this);
                     if (!isValid) {
                         if (!o.errTarget) o.errTarget = $this;

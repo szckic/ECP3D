@@ -1,56 +1,169 @@
-$(function() {
-    var $modelItem = $('.modelItem').find('section');
-    var $meetingList = $('.meetingList');
-    var $psdInput = $('.psdInput');
-    var $psdSwitch = $('.psdSwitch');
-    var $psdSwitchBtn = $psdSwitch.find('.psdSwitchBtn');
+;(function() {
 
-    $modelItem.each(function() {
+    // $('.closePop').on('click', function() {
+    //     console.log("c");
+    //     $('#psdPop').hide();
+    // })
+
+    // var $meetingPsdInput = $('.selectMeetingPsd').find('input');
+
+    // $('#joinMeetingBtn').on('click', function(){
+    //     var _psd = $meetingPsdInput.val() || '';
+
+    //     if(!_psd || _psd.length!=6 ) {
+    //         ldl.gTip.show('请输入6位密码');
+    //     }
+    //     else if(_psd != psd) {
+    //         ldl.gTip.show('密码错误');
+    //     }
+    //     else {
+    //         ldl.gModalLoading.show('密码正确, 即将跳转', function() {
+    //             console.log('psd input success');
+    //         })
+    //     }
+    // })
+    ///
+
+    var ecp = window.ecp = {
+        version: '0.1'
+    }
+
+    var $meetingList      = $('.meetingList');  //会议列表
+
+    var $creatMeetingForm = $('#createMeeting'); //新建会议相关
+    var $meetingName      = $creatMeetingForm.find('input[name=meetingName]'); 
+    var $psdSwitch        = $creatMeetingForm.find('.psdSwitch'); 
+    var $psdSwitchBtn     = $psdSwitch.find('.psdSwitchBtn');
+    var $psdInput   = $creatMeetingForm.find('.psdInput');
+    
+    var $modelItem        = $creatMeetingForm.find('.modelItem');
+    var $modelSection     = $modelItem.find('section');
+    var $submit           = $creatMeetingForm.find('.submit');
+
+    /****模型选择*****/
+    $modelSection.each(function() {
         var $this = $(this);
 
-        $this.click(function() { //模型选择
-            // console.log($this.data('name'));
+        $this.click(function() { 
             
-            if($this.hasClass('selected')) {
-                $this.removeClass('selected');
+            if($this.hasClass('selected')) { //取消选中
+                $this.removeClass('selected')
+                        .parent('.inputArea').val('');
             }
-            else {
-                $this.addClass('selected').siblings().removeClass('selected');
+            else { //选中一个
+                $this.addClass('selected').siblings().removeClass('selected')
+                        .parent('.inputArea').val(1);
             }
 
-            var content = $this.data('name') + $this.data('mid');
-
-            $meetingList.append('<li>' + content + '</li');
+            // var content = $this.data('name') + $this.data('mid');
+            // $meetingList.append('<li data-modelname=' + $this.data('name') + ' data-modelid=' + $this.data('name') + '>' + content + '</li');
         })
     })
 
     /****会议密码*****/
-
-    var psdInputHtml = $psdInput.detach().show();
+    var psdInputHtml = $psdInput.remove().show();
 
     $psdSwitchBtn.on('click', function() {
+
         var $this = $(this);
 
-        if($this.hasClass('on')){
-            //不要密码
+        if($this.hasClass('on')){//不要密码
             $this.removeClass('on');
-            $psdInput.detach().show();
-        }else{
-            //要密码
+            $psdInput.remove().show();
+        }
+        else{//要密码   
             $this.addClass('on');
             $psdSwitch.after(psdInputHtml);
         }
     })
 
     /****提交创建*****/
-    var $submit = $('.submit');
-    var form = new ldl.Formfuc($('#createMeeting'));
-
+    
+    var form = new ldl.Formfuc($creatMeetingForm);
+        
     form.onSubmit = submit;
 
     function submit() { //验表成功
-        console.log('c');
+        
+        var $meetingPsd = $('input[name=meetingPsd]');
+
+        var $modelInfo  = $modelItem.find('.selected');
+        var modelName   = $modelInfo.data('name'),
+            modelId     = $modelInfo.data('mid');
+        var meetingName = $meetingName.val();
+        var meetingPsd  = $meetingPsd.val() || '';
+
+        ldl.gTip.show('创建成功',3000);
+
+        $meetingList.append('<li onclick="ecp.setItem($(this))" data-modelname=' + modelName + ' data-modelid=' + modelId + ' data-psd=' + meetingPsd + '>' + meetingName + '</li');
     }
+    
+    /****选择会议*****/
+
+    ecp.setItem = function($this) {
+
+        var meetingName = $this.html() || '',
+            psd         = $this.data('psd') || '',
+            modelName   = $this.data('modelname') || '',
+            modelId     = $this.data('modelid') || '';
+
+        if(!psd) { //没有密码
+            ldl.gModalLoading.show("该会议不需要密码，即将跳转", 3000, function(){
+                // location.href = 'https://www.baidu.com';
+            });
+        }
+        else { //需要密码
+            // alert("yao mima");
+            $('#psdPop').find('.selectMeetingName p').html(meetingName);
+            $('#psdPop').show();
+
+            $('.closePop').on('click', function() {
+                console.log("c");
+                $('#psdPop').hide();
+            })
+
+            var $meetingPsdInput = $('.selectMeetingPsd').find('input');
+
+            $('#joinMeetingBtn').on('click', function(){
+                var _psd = $meetingPsdInput.val() || '';
+
+                if(!_psd || _psd.length!=6 ) {
+                    ldl.gTip.show('请输入6位密码');
+                }
+                else if(_psd != psd) {
+                    ldl.gTip.show('密码错误');
+                }
+                else {
+                    $('#psdPop').hide();
+                    ldl.gModalLoading.show('密码正确, 即将跳转', function() {
+                        console.log('psd input success');
+                    })
+                }
+            })
+
+        }
+    }
+
+    
+
+    ecp.setMeetingItemClick = function() {
+
+        var $meetingItem = $meetingList.find('li');
+
+        if($meetingItem.length != 0) {
+            $meetingList.find('li').each(function() {
+
+                var $this = $(this);
+
+                $this.on('click', function() {
+                    ecp.setItem($this);
+                })
+            })
+        }
+    }
+
+    ecp.setMeetingItemClick();
+    
     
 
     // pageReady();
@@ -70,8 +183,8 @@ $(function() {
 
                 if (msg.type == 'modelList') {
                     var list = msg.model;
-                    var $modelItem = $('.modelItem').find('section');
-                    $modelItem.each(function() {
+                    var $modelSection = $modelItem.find('section');
+                    $modelSection.each(function() {
                         $(this).remove();
 
                     });
@@ -80,9 +193,8 @@ $(function() {
 
                     $.each(list, function() {
 
-                        $('.modelItem').append(makeTag('section', { 'data-name': this.name, 'data-mid': this.modelId, 'data-img': this.img }, this.name));
+                        $modelItem.append(makeTag('section', { 'data-name': this.name, 'data-mid': this.modelId, 'data-img': this.img }, this.name));
 
-                        console.log(makeTag('section', { 'data-name': this.name, 'data-mid': this.modelId, 'data-img': this.img }, this.name));
                     });
 
                 } else if (msg.type == 'conferenceList') {
@@ -104,7 +216,6 @@ $(function() {
     function makeTag(tag, obj, value) {
         var html = '<' + tag + " ";
         for (var key in obj) {
-            console.log(obj[key]);
             html += key + "=";
             html += "\"" + obj[key] + "\" ";
 
@@ -112,4 +223,6 @@ $(function() {
         html += '>' + value + '</' + tag + ">";
         return html;
     }
-})
+})();
+
+    

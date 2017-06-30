@@ -15,7 +15,8 @@
         <div class="left">
             <h1>加入一个会议</h1>
             <ul class="meetingList">
-                
+                <li data-psd="111111">有密码的会议</li>
+                <li>无密码的会议</li>
             </ul>
         </div>
         <div class="right">
@@ -23,7 +24,7 @@
             <form id="createMeeting">
                 <div class="inputArea meeting">
                     <span class="tit">会议名称</span>
-                    <input type="text" name="meeting-name" data-validate="required" data-msg="请输入会议名称" placeholder="请输入会议名称">
+                    <input type="text" name="meetingName" data-validate="required" data-msg="请输入会议名称" placeholder="请输入会议名称">
                 </div>
 
                 <div class="psdSwitch">
@@ -33,12 +34,12 @@
 
                 <div class="inputArea psdInput" style="display: none;">
                     <span class="tit">验证密码</span>
-                    <input type="tel" name="psd" data-validate="required,len:6,number" data-msg="密码只能是6位数字" placeholder="请输入6位数字">
+                    <input type="tel" name="meetingPsd" data-validate="required,len:6,number" data-msg="密码只能是6位数字" placeholder="请输入6位数字">
                 </div>
 
                 <div class="chooseArea">
                     <span class="tit">模型选择</span>
-                    <div class="inputArea modelItem" data-validate="required" data-msg="请选择模型" value="1">
+                    <div class="inputArea modelItem" data-validate="required" data-msg="请选择模型">
                         <section data-name="model_1" data-mid="1">model_1</section>
                         <section data-name="model_2" data-mid="2">model_2</section>
                         <section data-name="model_3" data-mid="3">model_3</section>
@@ -53,10 +54,27 @@
             </form>
         </div>
     </div>
+
+    <div id="psdPop">
+        <div class="back"></div>
+        <div class="front">
+            <span class="closePop"></span>
+            <div class="selectMeetingName">
+                <span>会议名称</span>
+                <p></p>
+            </div>
+            <div class="selectMeetingPsd">
+                <span>会议密码</span>
+                <input type="number" placeholder="请输入6位密码">
+            </div>
+            <a id="joinMeetingBtn">加入</a>
+        </div>
+    </div>
 </body>
 
-<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script> -->
 <script type="text/javascript" src="./js/lib/common.js"></script>
 <script type="text/javascript" src="./js/conference_fun.js"></script>
 </html>

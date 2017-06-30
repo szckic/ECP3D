@@ -1,8 +1,8 @@
 /*reset*/
-*{margin:0;padding:0;color:#3b3b3b;}table{border-collapse:collapse;border-spacing:0;table-layout: fixed;}img{border:0;}address,caption,cite,code,dfn,em,strong,th{font-style:normal}ol,ul{list-style:none;}body{font-family: noto_sansregular, "Microsoft Yahei", arial;font-size:14px;color: #3b3b3b;background-color: white;}
+*{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;table-layout: fixed;}img{border:0;}address,caption,cite,code,dfn,em,strong,th{font-style:normal}ol,ul{list-style:none;}body{font-family: noto_sansregular, "Microsoft Yahei", arial;font-size:14px;color: #3b3b3b;background-color: white;}
 html{text-rendering: optimizeLegibility;}
 ::-webkit-input-placeholder {color:#aaa;font-weight: 100;font-size: 14px;} 
-input{outline:none;-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-appearance:searchfield;appearance:searchfield;padding:0;margin:0;}
+input{color:#3b3b3b;outline:none;-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-appearance:searchfield;appearance:searchfield;padding:0;margin:0;}
 select{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;}
 article, aside, details, figcaption, figure, footer, header, menu, nav, section {display: block; }
 a{text-decoration:none; }
@@ -17,130 +17,222 @@ h1 {font-size: 22px;margin: 12px 0;text-align: center;font-weight: normal;}
     width: 100%;
     padding: 8% 3%;
     box-sizing: border-box;
-}
 
-.left {
-    width: 40%;
-    float: left; 
-    height: 80%;         
-}
+    .left {
+        width: 40%;
+        float: left; 
+        height: 80%;         
+    }
 
-.right {
-    width: 60%;
-    height: auto;
-    float: left;
-    border-left: 1px solid #eee;
-    box-sizing: border-box;
-}
-.left>div, .right>form>div{
-    margin: 18px 10px;
-    position: relative;
-}
+    .right {
+        width: 60%;
+        height: auto;
+        float: left;
+        border-left: 1px solid #eee;
+        box-sizing: border-box;
+    }
+    .left>div, .right>form>div{
+        margin: 18px 10px;
+        position: relative;
+    }
 
-.meetingList li {
-    height: 30px;
-    line-height: 30px;
-}
-.tit {
-    margin-right: 8px;
-    vertical-align: middle;
-    line-height: 36px;
-    color: #808080;
-}
-.inputArea input {
-    font-size: 14px;
-    vertical-align: middle;
-    box-sizing: border-box;
-    border: 1px solid #5a5a5a;
-    border-radius: 4px;
-    height: 36px;
-    line-height: 36px;
-    width: 70%;
-    padding-left: 12px;
-    position: absolute;
-    right: 0;
-}
-.modelItem {
-    margin: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-.modelItem section {
-    width: 72px;
-    height: 72px;
-    text-align: center;
-    line-height: 72px; 
-    background: #eee;
-    border-radius: 4px;
-    margin: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
+    .meetingList li {
+        height: 30px;
+        line-height: 30px;
+    }
+    .tit {
+        margin-right: 8px;
+        vertical-align: middle;
+        line-height: 36px;
+        color: #808080;
+    }
+    .inputArea input {
+        font-size: 14px;
+        vertical-align: middle;
+        box-sizing: border-box;
+        border: 1px solid #5a5a5a;
+        border-radius: 4px;
+        height: 36px;
+        line-height: 36px;
+        width: 70%;
+        padding-left: 12px;
+        position: absolute;
+        right: 0;
+    }
+    .modelItem {
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .modelItem section {
+        width: 72px;
+        height: 72px;
+        text-align: center;
+        line-height: 72px; 
+        background: #eee;
+        border-radius: 4px;
+        margin: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
 
-    
+        
 
-    &.selected {
-    	background: #ffece3;
-    	color: #ff6524;
+        &.selected {
+        	background: #ffece3;
+        	color: #ff6524;
 
-    	&:before {
-	    	width: 12px;
-	    	height: 12px;
-	    	content: '';
-	    	position: absolute;
-	    	top: 3px;
-	    	right: 3px;
-	    	z-index: 100;
-	    	background: url(http://cdn.ledongli.cn/cdn-uploader/_1498737885594/gou.png) no-repeat;
-	    	background-size: 12px 12px;
-	    }
+        	&:before {
+    	    	width: 12px;
+    	    	height: 12px;
+    	    	content: '';
+    	    	position: absolute;
+    	    	top: 3px;
+    	    	right: 3px;
+    	    	z-index: 100;
+    	    	background: url(http://cdn.ledongli.cn/cdn-uploader/_1498737885594/gou.png) no-repeat;
+    	    	background-size: 12px 12px;
+    	    }
+        }
+    }
+
+    .psdSwitch {
+    	.tit {
+    		line-height: 44px;
+    	}
+    	.psdSwitchBtn {
+    		content: '';
+    		float: right;
+    		width: 65px;
+    		height: 44px;
+    		background: url(http://cdn.ledongli.cn/cdn-uploader/_1498723549163/checkBox.jpg) no-repeat 0 bottom;
+    		background-size: 65px 88px;
+
+    		position: absolute;
+    		right: 0;
+    		cursor: pointer;
+    	}
+    	.psdSwitchBtn.on{
+    		background-position: 0 0;
+    	}
+
+    	.psdSwitchBtn.on + .psd {
+    		display: block;
+    	}
+    }
+
+    .psdInput {
+    	// display: none;
+    }
+
+    .submit {
+    	>a {
+    		width: 100%;
+    		height: 36px;
+    		line-height: 36px;
+    		text-align: center;
+    		color: #fff;
+    		font-weight: 100;
+    		background: #48d9be;
+    		display: inline-block;
+    		border-radius: 4px;
+
+    	}
     }
 }
 
-.psdSwitch {
-	.tit {
-		line-height: 44px;
-	}
-	.psdSwitchBtn {
-		content: '';
-		float: right;
-		width: 65px;
-		height: 44px;
-		background: url(http://cdn.ledongli.cn/cdn-uploader/_1498723549163/checkBox.jpg) no-repeat 0 bottom;
-		background-size: 65px 88px;
+#psdPop {
+    display: none;
+    // position: absolute;
+    .back {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.4);
+        top:0;
+        left: 0;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+    }
+    .front {
+        font-size: 16px;
+        box-sizing: border-box;
+        padding: 16px 30px;
+        position: fixed;
+        top:50%;
+        left: 50%;
+        width: 70%;
+        height: 30%;
+        min-width: 295px;
+        min-height: 190px;
+        border-radius: 5px;
+        transform: translate(-50% , -50%);
+        z-index: 1000;
+        background: #fff;
 
-		position: absolute;
-		right: 0;
-		cursor: pointer;
-	}
-	.psdSwitchBtn.on{
-		background-position: 0 0;
-	}
+        .closePop {
+            display: inline-block;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: url(https://ldlpic.oss-cn-hangzhou.aliyuncs.com/cdnUploader/_1473322497882/x.png?ldl_cache=ba3008770e) no-repeat center;
+            background-size: 16px 16px;
+            top: 5px;
+            right: 5px;
+            padding: 5px;
+            margin: 0;
+            z-index: 1001;
+        }
+        
+        span {
+            color: gray;
+            height: 36px;
+            line-height: 36px;
+            margin-right: 18px;
+        }
 
-	.psdSwitchBtn.on + .psd {
-		display: block;
-	}
-}
+        p {
+            display: inline-block;
+        }
 
-.psdInput {
-	// display: none;
-}
+        input {
+            font-size: 14px;
+            vertical-align: middle;
+            box-sizing: border-box;
+            border: 1px solid #5a5a5a;
+            border-radius: 4px;
+            height: 36px;
+            line-height: 36px;
+            width: 73%;
+            padding-left: 12px;
+            position: absolute;
+            right: 0;
+        }
 
-.submit {
-	>a {
-		width: 100%;
-		height: 36px;
-		line-height: 36px;
-		text-align: center;
-		color: #fff;
-		font-weight: 100;
-		background: #48d9be;
-		display: inline-block;
-		border-radius: 4px;
+        >div{
+            position: relative;
+            margin-bottom: 22px;
+        }
+        .selectMeetingName {
+            
+            
 
-	}
+        }  
+        #joinMeetingBtn {
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            color: #fff;
+            font-weight: 100;
+            background: #48d9be;
+            display: inline-block;
+            border-radius: 4px;
+            margin-top: 8px;
+            font-size :16px;
+        }      
+    }
 }
 
 .errTip{
