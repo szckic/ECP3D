@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>加入会议</title>
+    <meta charset="utf-8">
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="css/css.css" />
+</head>
+
+<body>
+    <div id="container">
+        <div class="left">
+            <h1>加入一个会议</h1>
+            <ul class="meetingList">
+                
+            </ul>
+        </div>
+        <div class="right">
+            <h1>新建会议</h1>
+            <form id="createMeeting">
+                <div class="inputArea meeting">
+                    <span class="tit">会议名称</span>
+                    <input type="text" name="meeting-name" data-validate="required" data-msg="请输入会议名称" placeholder="请输入会议名称">
+                </div>
+
+                <div class="psdSwitch">
+                        <span class="tit">会议密码</span>
+                        <span class="psdSwitchBtn"></span>
+                </div>
+
+                <div class="inputArea psdInput" style="display: none;">
+                    <span class="tit">验证密码</span>
+                    <input type="tel" name="psd" data-validate="required,len:6,number" data-msg="密码只能是6位数字" placeholder="请输入6位数字">
+                </div>
+
+                <div class="chooseArea">
+                    <span class="tit">模型选择</span>
+                    <div class="inputArea modelItem" data-validate="required" data-msg="请选择模型" value="1">
+                        <section data-name="model_1" data-mid="1">model_1</section>
+                        <section data-name="model_2" data-mid="2">model_2</section>
+                        <section data-name="model_3" data-mid="3">model_3</section>
+                        <section data-name="model_4" data-mid="4">model_4</section>
+                        <section data-name="model_5" data-mid="5">model_5</section>
+                    </div>
+                </div>
+
+                <div class="submit">
+                    <a data-type="submit">提交申请</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="./js/lib/common.js"></script>
+<script type="text/javascript" src="./js/conference_fun.js"></script>
+</html>
